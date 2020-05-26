@@ -1,4 +1,5 @@
 'use strict'
+import "../index.css";
 /*
 fetch('https://praktikum.tk/cohort10/cards', {
   headers: {
