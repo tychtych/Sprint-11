@@ -17,6 +17,10 @@ Development
 npm run dev
 ```
 
+Run the deployment to GitHub Pages https://tychtych.github.io/Sprint-11/
+```$xslt
+npm run deploy
+```
 
 ##Built with:
 HTML5, CSS(Flexbox, Grid, BEM), Vanilla JS, Webpack
