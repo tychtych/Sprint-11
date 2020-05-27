@@ -1,24 +1,15 @@
 'use strict'
 import "../index.css";
-/*
-fetch('https://praktikum.tk/cohort10/cards', {
-  headers: {
-    authorization: 'b7bf284d-e98b-46e7-a116-decc877d1eec'
-  }
-})
-  .then(res => res.json())
-  .then((result) => {
-    console.log(result);
-  });
 
-  */
+import Api from "./Api";
+import Popup from "./Popup";
+import PopupImage from "./PopupImage";
+import UserInfo from "./UserInfo";
+import Card from "./Card";
+import CardList from "./CardList";
+import FormValidator from "./FormValidator";
 
 
-const errorMessages = {
-  valueMissing: 'Это обязательное поле',
-  tooShort: 'Должно быть от 2 до 30 символов',
-  typeMismatch: 'Здесь должна быть ссылка'
-}
 
 const api = new Api('https://praktikum.tk/cohort10', 'b7bf284d-e98b-46e7-a116-decc877d1eec');
 
@@ -46,8 +37,6 @@ const jobInput = popUpEditWindow.querySelector('.popup__input_type_Editlink-url'
 const userDiv = document.querySelector('.user-info');
 
 const formEdit = document.forms.popupEdit;
-
-
 
 closeButton.addEventListener('click', cardPopup.close.bind(cardPopup));
 closeEditButton.addEventListener('click', cardEditPopup.close.bind(cardEditPopup));
@@ -98,21 +87,20 @@ form.addEventListener('submit', function (event) {
 
 
 
-const editValidationForm = new FormValidator(formEdit, errorMessages);
+const editValidationForm = new FormValidator(formEdit);
 editValidationForm.setEventListeners();
 
-const addImageValidation = new FormValidator(form, errorMessages);
+const addImageValidation = new FormValidator(form);
 addImageValidation.setEventListeners();
 //addButton.addEventListener('click', cardPopup.open.bind(cardPopup));
 //when popup opens the form should be with non active button
-addButton.addEventListener('click', function () {
+addButton.addEventListener('click', () => {
   cardPopup.open.bind(cardPopup)();
   addImageValidation.resetForm();
-
 });
 
 //при открытии попапа сетается юзер инфо
-editButton.addEventListener('click', function () {
+editButton.addEventListener('click', () => {
   newEditUserInfo.updateUserInfo();
   cardEditPopup.open.bind(cardEditPopup)();
   editValidationForm.validateAllForm();
@@ -120,7 +108,7 @@ editButton.addEventListener('click', function () {
 
 //forms- submit event
 
-formEdit.addEventListener('submit', function (event) {
+formEdit.addEventListener('submit', event => {
 
   event.preventDefault();
   api.editUserInfo(nameInput.value, jobInput.value)
