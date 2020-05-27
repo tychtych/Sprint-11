@@ -13,21 +13,38 @@ module.exports = {
         filename: '[name].[chunkhash].js'
     },
     module: {
-        rules: [{
-            test: /\.js$/,
-            exclude: /node_modules/,
-            use: {
-                loader: "babel-loader"
-            }
-        },
-            // Добавьте ещё одно правило:
+        rules: [
             {
-
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader"
+                }
+            },
+            {
+                test: /\.(png|jpg|gif|ico|svg)$/,
+                use: [
+                    'file-loader?name=./images/[name].[ext]', // указали папку, куда складывать изображения
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {}
+                    },
+                ]
+            },
+            {
+                test: /\.(eot|ttf|woff|woff2)$/,
+                use: [
+                    'file-loader?name=./vendor/[name].[ext]',
+                    {
+                        loader: 'file-loader',
+                    }
+                ],
+            },
+            {
                 test: /\.css$/i, // применять это правило только к CSS-файлам
-                use: [MiniCssExtractPlugin.loader, 'css-loader','postcss-loader']
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
                 // к этим файлам нужно применить пакеты, которые мы уже установили
             },
-
         ]
     },
     plugins: [
@@ -47,9 +64,9 @@ module.exports = {
             cssProcessorPluginOptions: {
                 preset: ['default', {
                     discardComments: {
-                        removeAll:true
+                        removeAll: true
                     },
-                    canPrint:true
+                    canPrint: true
                 }]
             },
         })
