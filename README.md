@@ -1,4 +1,6 @@
 # Sprint 11 Webpack Configuration settings
+### Version 0.0.1
+
 
 This is the sprint dedicated to Webpack configuration settings, including css and js transcompilers. The project is based on the project Place.
 
