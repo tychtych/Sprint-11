@@ -6,6 +6,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const webpack = require('webpack');
 const cssnano = require('cssnano');
 const isDev = process.env.NODE_ENV === 'development';
+const styleLoader = isDev ? 'style-loader' : MiniCssExtractPlugin.loader;
 
 module.exports = {
     entry: {main: './src/js/index.js'},
@@ -49,8 +50,13 @@ module.exports = {
             },
             {
                 test: /\.css$/i, // применять это правило только к CSS-файлам
-                use: [
-                    ( isDev ? 'style-loader': MiniCssExtractPlugin.loader), 'css-loader', 'postcss-loader']
+                use: [styleLoader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 2,
+                        }
+                    }, 'postcss-loader']
                 // к этим файлам нужно применить пакеты, которые мы уже установили
             },
         ]

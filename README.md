@@ -22,5 +22,6 @@ Run the deployment to GitHub Pages https://tychtych.github.io/Sprint-11/
 npm run deploy
 ```
 
-##Built with:
+## Built with:
+
 HTML5, CSS(Flexbox, Grid, BEM), Vanilla JS, Webpack

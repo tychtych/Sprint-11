@@ -10,8 +10,9 @@ import CardList from "./CardList";
 import FormValidator from "./FormValidator";
 
 
+const serverUrl = NODE_ENV === 'development' ? 'http://praktikum.tk/cohort10' : 'https://praktikum.tk/cohort10';
+const api = new Api(serverUrl, 'b7bf284d-e98b-46e7-a116-decc877d1eec');
 
-const api = new Api('https://praktikum.tk/cohort10', 'b7bf284d-e98b-46e7-a116-decc877d1eec');
 
 const container = document.querySelector('.root');
 const listContainer = container.querySelector('.places-list');
