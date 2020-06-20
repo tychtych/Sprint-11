@@ -1,4 +1,4 @@
-class UserInfo {
+export default class UserInfo {
     /*
      *@param {HTMLEl} form HTML element
      *@param {HTMLEL} user-info__data div element

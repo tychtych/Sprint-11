@@ -1,7 +1,6 @@
 /* Opens and closes popup
  */
-
- class Popup {
+export default class Popup {
 
     /*
      *Toggles Add and Edit popup
